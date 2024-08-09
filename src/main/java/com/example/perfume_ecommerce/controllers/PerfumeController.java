@@ -18,8 +18,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 
@@ -30,12 +28,8 @@ public class PerfumeController {
     @Autowired
     private final PerfumeService perfumeService;
 
-    @Autowired
-    private final PerfumeRepository perfumeRepository;
-
     public PerfumeController(PerfumeService perfumeService, PerfumeRepository perfumeRepository){
         this.perfumeService = perfumeService;
-        this.perfumeRepository = perfumeRepository;
     }
 
     @GetMapping
