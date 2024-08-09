@@ -7,4 +7,5 @@ import com.example.perfume_ecommerce.models.Perfume;
 
 @Repository
 public interface PerfumeRepository extends CrudRepository<Perfume, Long>{
+    boolean existsByPerfumeName(String perfumeName);
 }
