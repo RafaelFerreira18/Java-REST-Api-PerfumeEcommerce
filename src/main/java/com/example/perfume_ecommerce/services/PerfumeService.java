@@ -1,5 +1,6 @@
 package com.example.perfume_ecommerce.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +39,9 @@ public class PerfumeService {
 			throw new IllegalArgumentException("This perfume already exists!");
 		}
         return this.perfumeRepository.save(perfume);
+    }
+
+    public List<Perfume> getPerfumesByCategory(String category) {
+        return perfumeRepository.findByCategory(category);
     }
 }

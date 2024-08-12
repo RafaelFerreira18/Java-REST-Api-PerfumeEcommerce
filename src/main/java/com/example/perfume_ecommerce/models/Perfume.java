@@ -14,7 +14,7 @@ public class Perfume {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "perfume_name", nullable = false)
     private String perfumeName;
 
     @Column(nullable = false)
@@ -26,67 +26,59 @@ public class Perfume {
     @Column(nullable = false)
     private Double price;
 
-    public Perfume(){}
+    public Perfume() {}
 
-    public Perfume(Long id, String perfumeName, String description, Double price){
-        this.id = id;
+    public Perfume(String perfumeName, String category, String description, Double price) {
         this.perfumeName = perfumeName;
+        this.category = category;
         this.description = description;
         this.price = price;
     }
 
-    /**
-     * @return Long return the id
-     */
+    public Perfume(Long id, String perfumeName, String category, String description, Double price) {
+        this.id = id;
+        this.perfumeName = perfumeName;
+        this.category = category;
+        this.description = description;
+        this.price = price;
+    }
+
     public Long getId() {
         return id;
     }
 
-    /**
-     * @param id the id to set
-     */
     public void setId(Long id) {
         this.id = id;
     }
 
-    /**
-     * @return String return the perfumeName
-     */
     public String getPerfumeName() {
         return perfumeName;
     }
 
-    /**
-     * @param perfumeName the perfumeName to set
-     */
     public void setPerfumeName(String perfumeName) {
         this.perfumeName = perfumeName;
     }
 
-    /**
-     * @return String return the description
-     */
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
     public String getDescription() {
         return description;
     }
 
-    /**
-     * @param description the description to set
-     */
     public void setDescription(String description) {
         this.description = description;
     }
 
-    /**
-     * @return Double return the price
-     */
     public Double getPrice() {
         return price;
     }
 
-    /**
-     * @param price the price to set
-     */
     public void setPrice(Double price) {
         this.price = price;
     }
