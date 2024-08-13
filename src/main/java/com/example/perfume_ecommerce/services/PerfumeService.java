@@ -44,4 +44,8 @@ public class PerfumeService {
     public List<Perfume> getPerfumesByCategory(String category) {
         return perfumeRepository.findByCategory(category);
     }
+
+    public List<Perfume> getPerfumesByPriceRange(Double minPrice, Double maxPrice) {
+        return perfumeRepository.findByPriceBetween(minPrice, maxPrice);
+    }
 }

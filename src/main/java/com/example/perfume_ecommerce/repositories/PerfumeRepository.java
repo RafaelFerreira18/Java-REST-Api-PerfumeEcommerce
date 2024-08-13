@@ -11,4 +11,5 @@ import com.example.perfume_ecommerce.models.Perfume;
 public interface PerfumeRepository extends CrudRepository<Perfume, Long>{
     boolean existsByPerfumeName(String perfumeName);
     List<Perfume> findByCategory(String category);
+    List<Perfume> findByPriceBetween(Double minPrice, Double maxPrice);
 }
