@@ -1,19 +1,11 @@
-# Etapa 1: Construir o JAR
-FROM maven:3.8.5-openjdk-17 AS build
-
-# Definir diretório de trabalho
+# Use an official Maven image as the base image
+FROM maven:3.8.5-openjdk-11-slim AS build
+# Set the working directory in the container
 WORKDIR /app
-
-# Copiar arquivos de configuração do Maven e pom.xml
+# Copy the pom.xml and the project files to the container
 COPY pom.xml .
-
-# Baixar as dependências do Maven (usar cache)
-RUN mvn dependency:go-offline -B
-
-# Copiar o código-fonte do projeto
 COPY src ./src
-
-# Compilar e empacotar a aplicação
+# Build the application using Maven
 RUN mvn clean package -DskipTests
 
 # Etapa 2: Criar a imagem final
@@ -22,9 +14,7 @@ FROM openjdk:17-jdk-alpine
 # Definir diretório de trabalho
 WORKDIR /app
 
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} app.jar
+COPY --from=build target/perfume_ecommerce-0.0.1-SNAPSHOT.jar app.jar
 
 EXPOSE 8080
-
 ENTRYPOINT ["java","-jar","/app.jar"]
