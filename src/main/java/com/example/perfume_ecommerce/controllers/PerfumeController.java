@@ -67,8 +67,33 @@ public class PerfumeController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/filter")
+    @GetMapping("/filterCategory")
     public List<Perfume> getPerfumesByCategory(@RequestParam String category) {
         return perfumeService.getPerfumesByCategory(category);
+    }
+    
+    @GetMapping("/filterPrice")
+    public List<Perfume> getPerfumesByPriceRange(@RequestParam String priceRange) {
+        Double minPrice = 0.0;
+        Double maxPrice = 0.0;
+
+        switch (priceRange) {
+            case "350-600":
+                minPrice = 350.0;
+                maxPrice = 600.0;
+                break;
+            case "600-800":
+                minPrice = 600.0;
+                maxPrice = 800.0;
+                break;
+            case "800-1500":
+                minPrice = 800.0;
+                maxPrice = 1500.0;
+                break;
+            default:
+                throw new IllegalArgumentException("Faixa de preço inválida: " + priceRange);
+        }
+
+        return perfumeService.getPerfumesByPriceRange(minPrice, maxPrice);
     }
 }
